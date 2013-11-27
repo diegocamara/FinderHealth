@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">Login</ui:define>
+	<ui:define name="cssRules">
+		.companyHeaderGrid tr, .companyHeaderGrid td {
+   			 border: none;
+		}
+	</ui:define>
+	
+		<ui:define name="northContent">
+			<p:layoutUnit position="north" size="100">
+			
+			</p:layoutUnit>
+		</ui:define>
+		
+		<ui:define name="southContent">
+			<p:layoutUnit position="south" size="200">
+			
+			</p:layoutUnit>
+		</ui:define>
+		<!-- 
+		<ui:define name="westContent">
+			<p:layoutUnit position="west" size="200">
+			
+			</p:layoutUnit>
+		</ui:define>
+		
+		<ui:define name="eastContent">
+			<p:layoutUnit position="east" size="200">
+			
+			</p:layoutUnit>
+		</ui:define>
+		 -->
+			
+	<ui:define name="centerContent">
+		<h:form>
+			
+			<div style="padding-top: 100px">
+					<p:panelGrid columns="2" styleClass="companyHeaderGrid" style="text-align:center;">										
+						
+						<p:outputLabel value="E-mail:" />
+						<p:inputText value="#{userSession.loginForm.email}" type="email"/>
+						
+						<p:outputLabel value="Password:"/>
+						<p:inputText value="#{userSession.loginForm.password}" type="password" />						
+										
+						<p:commandButton value="Login" action="#{userSession.login}" update=":topMenu" />				
+						
+					</p:panelGrid>
+				<p:messages  autoUpdate="true"/>
+				<p:growl sticky="false" autoUpdate="true" life="2000"/>	
+			</div>
+		</h:form>
+	</ui:define>
+
+</ui:composition>
+
+</html>

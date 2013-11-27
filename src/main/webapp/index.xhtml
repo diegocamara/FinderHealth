@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition template="WEB-INF/template/template.xhtml">
+
+	<ui:define name="title">Recife</ui:define>
+	<ui:define name="cssRules">
+		.companyHeaderGrid tr, .companyHeaderGrid td {
+   			 border: none;
+		}
+	</ui:define>
+	
+		<ui:define name="northContent">
+			<p:layoutUnit position="north" size="100">
+			
+			</p:layoutUnit>
+		</ui:define>
+		
+		<ui:define name="southContent">
+			<p:layoutUnit position="south" size="200">
+			
+			</p:layoutUnit>
+		</ui:define>
+		<!-- 
+		<ui:define name="westContent">
+			<p:layoutUnit position="west" size="200">
+			
+			</p:layoutUnit>
+		</ui:define>
+		
+		<ui:define name="eastContent">
+			<p:layoutUnit position="east" size="200">
+			
+			</p:layoutUnit>
+		</ui:define>
+			
+		 -->
+	<ui:define name="centerContent">
+	
+		<p:panelGrid columns="1" styleClass="companyHeaderGrid" style="text-align:center;">	
+						
+			<h1>O que você busca?</h1>			
+			
+			<p:outputLabel value="Unidades de saúde em recife por:"/>
+			<p:outputLabel value="Categoria"/>
+			
+			<h:form>
+			
+				<p:selectOneMenu value="#{entitySearch.unityOptions.categoryId}">
+					<f:selectItem itemLabel="Selecione uma categoria." itemValue="0"/>
+					<f:selectItems value="#{entitySearch.categoryList}" var="category" itemLabel="#{category.nome}" itemValue="#{category.id}"/>
+					<p:ajax update="@form" />
+				</p:selectOneMenu>			
+				
+				<p:panel rendered="#{entitySearch.unityOptions.categoryId > 0}">						
+					<h:outputText value="#{entitySearch.unityOptions.category.descricao}" />													
+				</p:panel>
+				
+			</h:form>
+			
+			<p:outputLabel value="Especialidade"/>
+			<p:selectOneMenu>
+				<f:selectItem itemLabel="Selecione uma especialidade." itemValue="0"/>
+				<f:selectItems value="#{entitySearch.specialityList}" var="speciality" itemLabel="#{speciality.name}" itemValue="#{speciality.id}"/>
+			</p:selectOneMenu>
+			
+			<p:outputLabel value="Bairro"/>
+			<p:inputText value="#{entitySearch.unityOptions.bairro}" style="width: 80%;"/>
+			
+			
+			<p:commandButton value="Buscar" action="#{entitySearch.search}"/>
+			
+			
+			
+						
+		</p:panelGrid>
+	</ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<ui:insert name="metadata" />	
+		
+	<title><ui:insert name="title" /></title>
+
+	<style>
+		<ui:insert name="cssRules"/>
+		
+		.ui-menuitem-text{
+			font-size: 30px !important;
+		}
+		
+	</style>	
+	
+	<script src="http://maps.google.com/maps/api/js?sensor=true" type="text/javascript" />
+	<script src="/pds/lib/code.js"/>
+	
+</h:head>
+<h:body>
+
+
+	<p:layout fullPage="true">
+
+		<p:layoutUnit position="north" size="100">
+			<h:form id="topMenu">
+				
+				<h:inputHidden value="#{userSession.userLocation.lat}" id="lat" />				
+				<h:inputHidden value="#{userSession.userLocation.lng}" id="lng"/>
+				
+				
+				<h:commandButton value="Testing" action="#{userSession.show()}" />				
+				
+					<p:menubar styleClass="ui-menubar" style="width:auto;height:auto;">																										
+						<p:menuitem value="Inicio" url="/faces/index.xhtml" />
+						<p:menuitem value="Entrar" rendered="#{!userSession.logado}" url="/faces/login.xhtml"/>
+						<p:menuitem value="Cadastro" rendered="#{!userSession.logado}" url="/faces/cadastro.xhtml"/>
+												
+						
+						<f:facet name="options">
+							<p:outputLabel value="#{userSession.showInfoBar()}"></p:outputLabel>
+							<p:commandLink value="Sair" rendered="#{userSession.logado}" action="#{userSession.resetBean}"/>											
+						</f:facet>
+												
+					</p:menubar>
+				
+			</h:form>
+				
+				<ui:insert name="northContent" />
+			
+		</p:layoutUnit>
+				
+				
+				<ui:insert name="southContent" />
+				<ui:insert name="westContent" />		
+				<ui:insert name="eastContent" />
+			
+
+		<p:layoutUnit position="center">
+			
+				<div align="center">
+					<ui:insert name="centerContent" />				
+				</div>																			
+			
+		</p:layoutUnit>
+	</p:layout>
+
+</h:body>
+</html>
