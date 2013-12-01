@@ -26,5 +26,9 @@ public class CommentDao {
 		
 		return query.getResultList();
 	}
+
+	public void saveComment(Comment comment) {
+		manager.persist(comment);		
+	}
 	
 }

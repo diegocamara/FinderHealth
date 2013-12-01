@@ -1,8 +1,10 @@
 package university.pds.presentation;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedProperty;
 
 import org.primefaces.model.map.DefaultMapModel;
 import org.primefaces.model.map.LatLng;
@@ -25,14 +27,33 @@ public class ShowUnity {
 	private @Autowired UnityController unityController;
 	private @Autowired CommentController commentController;
 	
+	@Autowired
+	private UserSession userSession;
+	
 	private Integer unityId;
 	private Unity unity;
 	private MapModel model;
 	private List<Comment> comments;
+	private Comment comment;
+	private boolean confirm;
+	private boolean haveLatlng;
 	
 	@PostConstruct
 	private void initialize(){	
-		model = new DefaultMapModel();		
+		model = new DefaultMapModel();
+		comment = new Comment();
+		comment.setStarsNumber(1);
+	}
+	
+	public String addComment(){
+		comment.setDate(new Date());		
+		comment.setUnity(unity);
+		comment.setUser(userSession.getUser());
+		
+		commentController.saveComment(comment);
+		return "showMap";
+		//return "/pds/faces/showMap.xhtml?unityId="+unity.getId();
+		
 	}
 	
 	public Integer getUnityId() {
@@ -42,9 +63,19 @@ public class ShowUnity {
 		this.unityId = unityId;	
 		unity = unityController.searchUnityById(unityId);
 		comments = commentController.searchComments(unityId);
-		LatLng coord = new LatLng(Float.parseFloat(unity.getLatitude().replace(",", ".")), Float.parseFloat(unity.getLongitude().replace(",", ".")));
-		model.addOverlay(new Marker(coord,unity.getUnityName()));
+		
+		if(unity.getLatitude() != null && unity.getLongitude() != null){
+			
+			LatLng coord = new LatLng(Float.parseFloat(unity.getLatitude().replace(",", ".")), Float.parseFloat(unity.getLongitude().replace(",", ".")));
+			model.addOverlay(new Marker(coord,unity.getUnityName()));
+			haveLatlng = true;
+			
+		}else{
+			haveLatlng = false;						
+		}
+		
 	}
+	
 	public Unity getUnity() {
 		return unity;
 	}
@@ -83,5 +114,39 @@ public class ShowUnity {
 		return latitude + "," + longitude;
 		
 	}
+
+	public Comment getComment() {
+		return comment;
+	}
+
+	public void setComment(Comment comment) {
+		this.comment = comment;
+	}
+
+	public boolean isConfirm() {
+		return confirm;
+	}
+
+	public void setConfirm(boolean confirm) {
+		this.confirm = confirm;
+	}
+
+	public UserSession getUserSession() {
+		return userSession;
+	}
+
+	public void setUserSession(UserSession userSession) {
+		this.userSession = userSession;
+	}
+
+	public boolean isHaveLatlng() {
+		return haveLatlng;
+	}
+
+	public void setHaveLatlng(boolean haveLatlng) {
+		this.haveLatlng = haveLatlng;
+	}
+	
+	
 	
 }

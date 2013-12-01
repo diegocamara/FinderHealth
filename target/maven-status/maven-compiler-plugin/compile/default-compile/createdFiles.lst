@@ -1,8 +1,7 @@
 university\pds\presentation\EntitySearch.class
 university\pds\business\CategoryController.class
-university\pds\presentation\UserSession.class
 university\pds\persistence\UnityDao.class
-university\pds\presentation\CommentMB.class
+university\pds\presentation\UserSession.class
 university\pds\presentation\ShowUnity.class
 university\pds\business\Speciality.class
 university\pds\persistence\UserDao.class

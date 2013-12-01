@@ -4,9 +4,12 @@ public class UnitySearchOptions {
 
 	private Category category;
 	private Integer categoryId;
+	private Integer specialityId;
 	private String bairro;
+	private String speciality;	
 	private Integer firstResult;
 	private Integer maxResult;
+	
 	
 	public Category getCategory() {
 		return category;
@@ -19,12 +22,25 @@ public class UnitySearchOptions {
 	}
 	public void setCategoryId(Integer categoryId) {
 		this.categoryId = categoryId;
+	}	
+	public Integer getSpecialityId() {
+		return specialityId;
+	}
+	public void setSpecialityId(Integer specialityId) {
+		this.specialityId = specialityId;
 	}
 	public String getBairro() {
 		return bairro;
 	}
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
+	}	
+	
+	public String getSpeciality() {
+		return speciality;
+	}
+	public void setSpeciality(String speciality) {
+		this.speciality = speciality;
 	}
 	public Integer getFirstResult() {
 		return firstResult;
@@ -38,6 +54,7 @@ public class UnitySearchOptions {
 	public void setMaxResult(Integer maxResult) {
 		this.maxResult = maxResult;
 	}
+	
 	
 		
 }// fim da classe UnitySearchOptions

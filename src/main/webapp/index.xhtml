@@ -14,6 +14,10 @@
 		.companyHeaderGrid tr, .companyHeaderGrid td {
    			 border: none;
 		}
+		
+		.ui-tabs-nav{
+			width: 100%;
+		}
 	</ui:define>
 	
 		<ui:define name="northContent">
@@ -48,33 +52,65 @@
 			<h1>O que você busca?</h1>			
 			
 			<p:outputLabel value="Unidades de saúde em recife por:"/>
-			<p:outputLabel value="Categoria"/>
 			
-			<h:form>
+			<p:tabView>
 			
-				<p:selectOneMenu value="#{entitySearch.unityOptions.categoryId}">
-					<f:selectItem itemLabel="Selecione uma categoria." itemValue="0"/>
-					<f:selectItems value="#{entitySearch.categoryList}" var="category" itemLabel="#{category.nome}" itemValue="#{category.id}"/>
-					<p:ajax update="@form" />
-				</p:selectOneMenu>			
+				<p:tab title="Categoria">
 				
-				<p:panel rendered="#{entitySearch.unityOptions.categoryId > 0}">						
-					<h:outputText value="#{entitySearch.unityOptions.category.descricao}" />													
-				</p:panel>
+					<h:form>
+					
+						<p:selectOneMenu value="#{entitySearch.categoryId}" onchange="#{entitySearch.categoryConfig()}">
+							<f:selectItem itemLabel="Selecione uma categoria." itemValue="0"/>
+							<f:selectItems value="#{entitySearch.categoryList}" var="category" itemLabel="#{category.nome}" itemValue="#{category.id}"/>
+							<p:ajax update="@form" />
+						</p:selectOneMenu>			
+						
+						<p:panel rendered="#{entitySearch.categoryId > 0}">						
+							<h:outputText value="#{entitySearch.category.descricao}" />													
+						</p:panel>
+						
+						<p:commandButton value="Buscar" action="#{entitySearch.searchCategory}"/>						
+					  	
+						<p:growl sticky="false" autoUpdate="true" life="5000"/>	
+					  
+					</h:form>
 				
-			</h:form>
+				</p:tab>
+				
+				<p:tab title="Especialidade">
+				
+				<h:form>
 			
-			<p:outputLabel value="Especialidade"/>
-			<p:selectOneMenu>
-				<f:selectItem itemLabel="Selecione uma especialidade." itemValue="0"/>
-				<f:selectItems value="#{entitySearch.specialityList}" var="speciality" itemLabel="#{speciality.name}" itemValue="#{speciality.id}"/>
-			</p:selectOneMenu>
+					<p:selectOneMenu value="#{entitySearch.specialityId}" onchange="#{entitySearch.specialityConfig()}">
+						<f:selectItem itemLabel="Selecione uma especialidade." itemValue="0"/>
+						<f:selectItems value="#{entitySearch.specialityList}" var="speciality" itemLabel="#{speciality.name}" itemValue="#{speciality.id}"/>
+						<p:ajax update="@form"/>
+					</p:selectOneMenu>
+					
+					<p:commandButton value="Buscar" action="#{entitySearch.searchSpeciality}"/>
 			
-			<p:outputLabel value="Bairro"/>
-			<p:inputText value="#{entitySearch.unityOptions.bairro}" style="width: 80%;"/>
+				</h:form>
+				
+				</p:tab>
+				
+				
+				<p:tab title="Bairro">
+					<h:form>
+						<p:inputText value="#{entitySearch.bairro}" style="width: 80%;">
+							<p:ajax update="@form"/>
+						</p:inputText>
+						
+						<p:commandButton value="Buscar" action="#{entitySearch.searchBairro}"/>
+						
+					</h:form>
+				</p:tab>
+				
+			</p:tabView>			
 			
 			
-			<p:commandButton value="Buscar" action="#{entitySearch.search}"/>
+			<p:commandButton value="Listar todas unidades" action="#{entitySearch.searchAll}"/>
+			
+			
 			
 			
 			

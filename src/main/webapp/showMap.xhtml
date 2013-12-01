@@ -29,14 +29,15 @@
 					<br />
 					<p:outputLabel value="Telefone de contato: #{showUnity.unity.fone}" />
 					<br />
-					<p:commandButton value="Como chegar"/>
+					<p:commandButton value="Como chegar" rendered="#{showUnity.haveLatlng}"/>
 				</div>
 			</p:panel>
 			
 			<p:panel header="Localização no mapa." style="text-align: center">
 									
 				<div align="center">
-					<p:gmap center="#{showUnity.center}" zoom="18" type="HYBRID" style="width:100%;height:400px" model="#{showUnity.model}"/>
+					<p:gmap center="#{showUnity.center}" zoom="15" type="ROADMAP" style="width:100%;height:400px" model="#{showUnity.model}" rendered="#{showUnity.haveLatlng}"/>
+					<p:outputLabel value="Posição não disponivel!" rendered="#{!showUnity.haveLatlng}"/>
 				</div>
 			</p:panel>
 			
@@ -44,14 +45,14 @@
 			
 				<p:accordionPanel activeIndex="-1">
 					<p:tab title="Mostrar comentarios!">
-					<p:panelGrid columns="1" style="width:100%;" rendered="#{userSession.logado}">
-						<p:inputText placeholder="Titulo do comentário" style="width:100%;" />					
-						<p:inputTextarea placeholder="Descrição" autoResize="false"  style="width:100%;" />
+					<p:panelGrid columns="1" style="width:100%;" rendered="true">
+						<p:inputText value="#{showUnity.comment.title}" placeholder="Titulo do comentário" style="width:100%;" />					
+						<p:inputTextarea value="#{showUnity.comment.description}" placeholder="Descrição" autoResize="false"  style="width:100%;" />
 						
 						<p:outputLabel value="Avalie sua experiência nesta unidade de saúde:"/>
-						<p:rating style="height:100px;" value="#{commentMB.comment.starsNumber}"/>
-						<p:commandButton value="Comentar" style="width:100%;height:100px;" />
-					
+						<p:rating style="height:100px;" value="#{showUnity.comment.starsNumber}"/>
+						<p:commandButton value="Comentar" action="#{showUnity.addComment}" style="width:100%;height:100px;" />
+						
 					</p:panelGrid>
 						
 						<p:dataList value="#{showUnity.comments}" var="comment">
