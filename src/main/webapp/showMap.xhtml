@@ -18,6 +18,10 @@
 	
 
 	<ui:define name="centerContent">
+		<h:form id="latLng">
+			<h:inputHidden value="#{showUnity.unityLocation.lat}" id="lat" />				
+			<h:inputHidden value="#{showUnity.unityLocation.lng}" id="lng"/>
+		</h:form>
 		
 		<p:panel header="#{showUnity.unity.unityName}" style="text-align: center">
 				<div style="text-align: left;">
@@ -30,22 +34,26 @@
 					<p:outputLabel value="Telefone de contato: #{showUnity.unity.fone}" />
 					<br />
 					<p:commandButton value="Como chegar" rendered="#{showUnity.haveLatlng}"/>
+					<p:commandButton value="Test" onclick="setDestinationPoint('#{showUnity.unityLocation.lat}','#{showUnity.unityLocation.lng}')"/>
 				</div>
 			</p:panel>
 			
 			<p:panel header="Localização no mapa." style="text-align: center">
 									
 				<div align="center">
-					<p:gmap center="#{showUnity.center}" zoom="15" type="ROADMAP" style="width:100%;height:400px" model="#{showUnity.model}" rendered="#{showUnity.haveLatlng}"/>
+					<p:gmap widgetVar="primeMap" fitBounds="true" zoom="1" center="#{showUnity.center}" type="ROADMAP" style="width:100%;height:400px" model="#{showUnity.model}" rendered="#{showUnity.haveLatlng}"/>
 					<p:outputLabel value="Posição não disponivel!" rendered="#{!showUnity.haveLatlng}"/>
+															
 				</div>
 			</p:panel>
+			
+			<p:outputPanel id="directionsPanel" style="width:600px" layout="block"/>
 			
 			<h:form>
 			
 				<p:accordionPanel activeIndex="-1">
 					<p:tab title="Mostrar comentarios!">
-					<p:panelGrid columns="1" style="width:100%;" rendered="true">
+					<p:panelGrid columns="1" style="width:100%;" rendered="#{userSession.logado}">
 						<p:inputText value="#{showUnity.comment.title}" placeholder="Titulo do comentário" style="width:100%;" />					
 						<p:inputTextarea value="#{showUnity.comment.description}" placeholder="Descrição" autoResize="false"  style="width:100%;" />
 						

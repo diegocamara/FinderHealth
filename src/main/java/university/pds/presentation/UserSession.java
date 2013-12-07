@@ -18,98 +18,87 @@ import university.pds.business.*;
 @Scope(WebApplicationContext.SCOPE_SESSION)
 public class UserSession {
 
-	private @Autowired UserController userController;
-	
+	private @Autowired
+	UserController userController;
+
 	private boolean logado;
 	private User user;
 	private LoginForm loginForm;
-	private UserLocation userLocation;
 	
+
 	@PostConstruct
-	private void initialize(){
-		this.loginForm = new LoginForm();
-		this.userLocation = new UserLocation();
+	private void initialize() {
+		this.loginForm = new LoginForm();		
+
 	}
-	
-	public String login(){		
-		
+
+	public String login() {
+
 		String result = "";
-		
+
 		FacesMessage message = new FacesMessage();
-		
+
 		this.user = userController.searchUser(loginForm);
-		
-		if(this.user != null){
+
+		if (this.user != null) {
 			setLogado(true);
 			message.setSeverity(FacesMessage.SEVERITY_INFO);
 			message.setSummary("Usuário logado com sucesso!");
 			result = "inicio";
-		}else{
+		} else {
 			message.setSeverity(FacesMessage.SEVERITY_ERROR);
 			message.setSummary("E-mail ou senha inválidos!");
-		}		
-		
-		FacesContext.getCurrentInstance().addMessage(null, message);		
-		
+		}
+
+		FacesContext.getCurrentInstance().addMessage(null, message);
+
 		return result;
-		
+
 	}
-	
-	public String resetBean(){
+
+	public String resetBean() {
 		logado = false;
 		user = null;
 		loginForm = new LoginForm();
-		
+
 		return "inicio";
 	}
-	
-	public String showInfoBar(){
-		
+
+	public String showInfoBar() {
+
 		String info = null;
-		
-		if(logado){
+
+		if (logado) {
 			info = "Bem vindo " + user.getName() + "! ";
-		}else{
+		} else {
 			info = "Olá visitante.";
 		}
-		
-		return info;		
+
+		return info;
 	}
 	
-	public void show(){
-		userLocation.setCoord();
-		System.out.println(userLocation.getLat());
-		System.out.println(userLocation.getLng());
-		System.out.println(userLocation.getLatLng().getLat());
-		System.out.println(userLocation.getLatLng().getLng());
-	}
-	
-		
 	public boolean isLogado() {
 		return logado;
 	}
+
 	public void setLogado(boolean logado) {
 		this.logado = logado;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
+
 	public LoginForm getLoginForm() {
 		return loginForm;
 	}
+
 	public void setLoginForm(LoginForm loginForm) {
 		this.loginForm = loginForm;
-	}
-
-	public UserLocation getUserLocation() {
-		return userLocation;
-	}
-
-	public void setUserLocation(UserLocation userLocation) {
-		this.userLocation = userLocation;
 	}
 
 	

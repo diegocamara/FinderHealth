@@ -1,4 +1,5 @@
 university\pds\presentation\EntitySearch.class
+university\pds\business\UnityLocation.class
 university\pds\business\CategoryController.class
 university\pds\persistence\UnityDao.class
 university\pds\presentation\UserSession.class
@@ -17,7 +18,6 @@ university\pds\business\SpecialityController.class
 university\pds\business\CommentController.class
 university\pds\persistence\CategoryDao.class
 university\pds\persistence\CommentDao.class
-university\pds\business\UserLocation.class
 university\pds\business\UserController.class
 university\pds\persistence\SpecialityDao.class
 university\pds\business\Comment.class

@@ -19,6 +19,7 @@ import university.pds.business.Comment;
 import university.pds.business.CommentController;
 import university.pds.business.Unity;
 import university.pds.business.UnityController;
+import university.pds.business.UnityLocation;
 
 @Component
 @Scope(WebApplicationContext.SCOPE_REQUEST)
@@ -37,12 +38,15 @@ public class ShowUnity {
 	private Comment comment;
 	private boolean confirm;
 	private boolean haveLatlng;
+	private UnityLocation unityLocation;
 	
 	@PostConstruct
 	private void initialize(){	
 		model = new DefaultMapModel();
 		comment = new Comment();
 		comment.setStarsNumber(1);
+		unityLocation = new UnityLocation();
+				
 	}
 	
 	public String addComment(){
@@ -70,6 +74,10 @@ public class ShowUnity {
 			model.addOverlay(new Marker(coord,unity.getUnityName()));
 			haveLatlng = true;
 			
+			
+			unityLocation.setLat(unity.getLatitude().replace(",", "."));
+			unityLocation.setLng(unity.getLongitude().replace(",", "."));
+
 		}else{
 			haveLatlng = false;						
 		}
@@ -145,6 +153,14 @@ public class ShowUnity {
 
 	public void setHaveLatlng(boolean haveLatlng) {
 		this.haveLatlng = haveLatlng;
+	}
+
+	public UnityLocation getUnityLocation() {
+		return unityLocation;
+	}
+
+	public void setUnityLocation(UnityLocation unityLocation) {
+		this.unityLocation = unityLocation;
 	}
 	
 	
