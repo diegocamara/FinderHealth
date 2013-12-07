@@ -102,16 +102,18 @@
 			
 			</h:panelGrid>
 			
-			<h:panelGrid columns="1" style="width:50%;margin: 0 auto;">
-				<h1 align="center">Busca geral</h1>
-				<p:inputText style="width:100%;margin: 0 auto;" />
-				
-				<h:panelGrid columns="2" style="width:50%;margin: 0 auto;text-align:center;">
-					<p:commandButton value="Buscar"/>
-					<p:commandButton value="Listar todas" action="#{entitySearch.searchAll}" style="display: inline-block;"/>
-				</h:panelGrid>
+				<h:form>
+					<h:panelGrid columns="1" style="width:50%;margin: 0 auto;">
+						<h1 align="center">Busca geral</h1>
+						<p:inputText value="#{entitySearch.input}" style="width:100%;margin: 0 auto;" />						
 						
-			</h:panelGrid>			
+							<h:panelGrid columns="2" style="width:50%;margin: 0 auto;text-align:center;">
+								<p:commandButton value="Buscar" action="#{entitySearch.searchInput}"/>
+								<p:commandButton value="Listar todas" action="#{entitySearch.searchAll}" style="display: inline-block;"/>
+							</h:panelGrid>
+								
+						</h:panelGrid>			
+				</h:form>
 						
 			
 			<p:tabView rendered="false">

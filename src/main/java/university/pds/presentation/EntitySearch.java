@@ -1,5 +1,6 @@
 package university.pds.presentation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -42,6 +43,7 @@ public class EntitySearch {
 	private String speciality;
 	private Integer specialityId;
 	private String bairro;
+	private String input = "";
 
 	@PostConstruct
 	private void initialize() {
@@ -155,6 +157,43 @@ public class EntitySearch {
 
 		return "results";
 	}
+	
+	public String searchInput(){		
+		
+				
+		// obter lista de Strings da busca.
+		/*
+		for(int i = 0; i < input.length(); ++i){
+			
+			if(input.charAt(i) == ' ' || i == input.length()-1){
+				
+				if(i == input.length()-1){
+					tempList.add(input.substring(start, i+1));
+				}else{
+					tempList.add(input.substring(start, i));					
+				}
+				
+				start = i+1;
+			}
+			
+		}
+		
+		List<List<Unity>> unitsList = new ArrayList<>();
+		*/
+				
+		
+		this.unityList = unityController.searchUnityByInput(input);
+		
+		return "results";
+	}
+		
+	public void listIterator(List<Unity> target, List<Unity> temp){
+		
+		for(Unity unity : temp){
+			target.add(unity);
+		}
+		
+	}
 
 	public List<Speciality> getSpecialityList() {
 		return specialityList;
@@ -224,5 +263,15 @@ public class EntitySearch {
 	public void setBairro(String bairro) {
 		this.bairro = bairro;
 	}
+
+	public String getInput() {
+		return input;
+	}
+
+	public void setInput(String input) {
+		this.input = input;
+	}
+	
+	
 
 }

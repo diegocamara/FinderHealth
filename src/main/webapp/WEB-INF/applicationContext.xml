@@ -31,8 +31,8 @@
 		<property name="username" value="appcodex" />
 		<property name="password" value="1234567" />
 	</bean>
-      -->
 	
+      -->
 	<!-- 
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"

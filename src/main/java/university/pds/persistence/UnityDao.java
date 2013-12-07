@@ -78,5 +78,36 @@ public class UnityDao {
 		
 		return query.getResultList();
 	}
+
+	public List<Unity> searchUnityByInput(String input) {
+		
+		List<Unity> tempList = new ArrayList<>();
+		
+		String jpql = "select u from " + Unity.class.getName() + " u where lower(u.category.nome) like :categoryName";			
+		TypedQuery<Unity> query = manager.createQuery(jpql, Unity.class);
+		query.setParameter("categoryName", "%" + input.toLowerCase() + "%");
+		
+		for(Unity unity : query.getResultList()){
+			tempList.add(unity);
+		}
+		
+		jpql = "select u from " + Unity.class.getName() + " u where lower(u.especialidade) like :especialidade";			
+		query = manager.createQuery(jpql, Unity.class);
+		query.setParameter("especialidade", "%" + input.toLowerCase() + "%");
+				
+		for(Unity unity : query.getResultList()){
+			tempList.add(unity);
+		}
+		
+		jpql = "select u from " + Unity.class.getName() + " u where lower(u.bairro) like :bairro";		
+		query = manager.createQuery(jpql, Unity.class);
+		query.setParameter("bairro", "%" + input.toLowerCase() + "%");
+		
+		for(Unity unity : query.getResultList()){
+			tempList.add(unity);
+		}
+		
+		return tempList;
+	}
 	
 }

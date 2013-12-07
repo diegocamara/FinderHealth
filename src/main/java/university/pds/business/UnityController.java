@@ -35,5 +35,10 @@ public class UnityController {
 	public List<Unity> searchAllUnitys() {		
 		return dao.searchAllUnitys();
 	}
-	
+
+	public List<Unity> searchUnityByInput(String input) {		
+		return dao.searchUnityByInput(input);
+	}
+
+		
 }
