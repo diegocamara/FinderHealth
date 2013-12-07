@@ -291,23 +291,7 @@
 			
 			}// fim da função showError.
 			
-			function insertAddress(){
-				
-				var select = document.getElementById("locais");
-				var option = document.createElement("option");
-				option.text = document.getElementById("destinationAddress").value;
-				option.value = option.text;
-				
-				try{
-					
-					select.add(option, select.options[null]);
-					
-				}catch(e){
-					select.add(option, null);
-				}
-				
-			}// fim da função insertAddress.
-			
+						
 			function enableInterface(){
 			
 				document.getElementById("findBtn").disabled = false;
@@ -316,54 +300,4 @@
 			
 			}// fim da função enableInterface.
 		
-			
-			function calculaPrecoTaxi(){ //Função para calcular o valor da tarifa do taxi 
-				var bandeira1 = 3.80; // valor da bandeira 1
-				var bandeira2 = 4.00; // valor da bandeira 2
-				var txBand1 = 1.85;   // taxa por km rodado para bandeira 1
-				var txBand2 = 2.22;   // taxa por km rodado para bandeira 2
-				var valorBandeira;    // valor da bandeira para o calculo do valor
-				var kmRodado;         // distância do percurso
-				var txKmRodado;       // taxa por km rodado
-				var valorFinal;       // valor a ser pago para o taxi 
-				var dia;             // variavel para pegar o dia atual do sistema
-				var horas;			// variavel para pegar as horas atual do sistema	
 				
-				horas = new Date().getHours();  // hora atual do sistema
-				
-				dia = new Date().getDay();    // dia atual do sistema
-				
-				kmRodado = distancia/1000;                                         // distancia do percurso
-				
-				if(horas >= 22 || horas < 06 || dia == 0 || dia == 6){ // teste para saber se é bandeira 2
-					valorBandeira = bandeira2;
-					txKmRodado = txBand2
-				}else{                                   // bandeira 1
-					valorBandeira = bandeira1;
-					txKmRodado = txBand1;
-				}
-				
-				valorFinal = valorBandeira + (kmRodado * txKmRodado);
-				
-				document.getElementById("precoTaxi").innerHTML = valorFinal;
-				
-			}
-			
-			function calculaValorGasolina(){  // Função para calcular o gasto com a gasolina
-				var consumoCarro;    // consumo de gasolina do carro
-				var litros;          // quantidade de litros necessária para realizar o percurso   
-				var precoGasolina=2.729;           // valor da gaolina
-				var distancia_percursso;          // distancia total do percurso
-				var precoFinal;                   // valor gasto com a gasolina
-		
-				consumoCarro = document.getElementById("inputConsumo").value;	  //pega o consumo digitado pelo usuário	
-				alert(consumoCarro);
-				distancia_percursso=distancia/1000;				// distancia do percurso		
-				alert(distancia_percursso);
-				litros = (distancia/1000)/consumoCarro; 				// calcula quantos litros serão gastos para relizar o percurso
-				alert(litros);
-				
-				precoFinal = litros * precoGasolina;                // valor do gasto com a gasolina
-				alert(precoFinal);
-				document.getElementById("preco").innerHTML = precoFinal;
-			}

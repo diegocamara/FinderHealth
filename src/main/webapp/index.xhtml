@@ -47,19 +47,80 @@
 		 -->
 	<ui:define name="centerContent">
 	
-		<p:panelGrid columns="1" styleClass="companyHeaderGrid" style="text-align:center;">	
-						
+								
 			<h1>O que você busca?</h1>			
 			
 			<p:outputLabel value="Unidades de saúde em recife por:"/>
 			
-			<p:tabView>
+			
+			
+			<h:panelGrid columns="2" style="width:100%;margin: 0 auto;vertical-align:middle;">
+				
+				<p:fieldset legend="Categoria" style="width:50%;margin: 0 auto;display:block;">
+				
+					<h:form>
+						<h:panelGrid columns="1" style="width:100%;margin: 0 auto;text-align:center;">
+						
+							<p:selectOneMenu value="#{entitySearch.categoryId}" onchange="#{entitySearch.categoryConfig()}" style="width:350px;margin: 0 auto;">
+								<f:selectItem itemLabel="Selecione uma categoria." itemValue="0"/>
+								<f:selectItems value="#{entitySearch.categoryList}" var="category" itemLabel="#{category.nome}" itemValue="#{category.id}"/>
+								<p:ajax update="@form" />
+							</p:selectOneMenu>			
+							
+							<p:panel rendered="#{entitySearch.categoryId > 0}">						
+								<h:outputText value="#{entitySearch.category.descricao}" />													
+							</p:panel>
+							
+							<p:commandButton value="Buscar" action="#{entitySearch.searchCategory}" style="margin: 0 auto;"/>
+													
+						</h:panelGrid>						
+					  	
+						<p:growl sticky="false" autoUpdate="true" life="5000"/>	
+					  
+					</h:form>
+			
+				</p:fieldset>
+				
+				<p:fieldset legend="Especialidade" style="width:50%;margin: 0 auto;display:block;">
+				
+					<h:form>
+						
+						<h:panelGrid columns="1" style="width:100%;margin: 0 auto;text-align:center;">
+						
+							<p:selectOneMenu value="#{entitySearch.specialityId}" onchange="#{entitySearch.specialityConfig()}" style="width:350px;margin: 0 auto;">
+								<f:selectItem itemLabel="Selecione uma especialidade." itemValue="0"/>
+								<f:selectItems value="#{entitySearch.specialityList}" var="speciality" itemLabel="#{speciality.name}" itemValue="#{speciality.id}"/>
+								<p:ajax update="@form"/>
+							</p:selectOneMenu>
+							
+							<p:commandButton value="Buscar" action="#{entitySearch.searchSpeciality}"/>
+			
+						</h:panelGrid>
+				</h:form>
+			
+				</p:fieldset>			
+			
+			</h:panelGrid>
+			
+			<h:panelGrid columns="1" style="width:50%;margin: 0 auto;">
+				<h1 align="center">Busca geral</h1>
+				<p:inputText style="width:100%;margin: 0 auto;" />
+				
+				<h:panelGrid columns="2" style="width:50%;margin: 0 auto;text-align:center;">
+					<p:commandButton value="Buscar"/>
+					<p:commandButton value="Listar todas" action="#{entitySearch.searchAll}" style="display: inline-block;"/>
+				</h:panelGrid>
+						
+			</h:panelGrid>			
+						
+			
+			<p:tabView rendered="false">
 			
 				<p:tab title="Categoria">
 				
 					<h:form>
 					
-						<p:selectOneMenu value="#{entitySearch.categoryId}" onchange="#{entitySearch.categoryConfig()}">
+						<p:selectOneMenu value="#{entitySearch.categoryId}" onchange="#{entitySearch.categoryConfig()}" style="width:350px;margin: 0 auto;">
 							<f:selectItem itemLabel="Selecione uma categoria." itemValue="0"/>
 							<f:selectItems value="#{entitySearch.categoryList}" var="category" itemLabel="#{category.nome}" itemValue="#{category.id}"/>
 							<p:ajax update="@form" />
@@ -105,17 +166,10 @@
 					</h:form>
 				</p:tab>
 				
-			</p:tabView>			
-			
-			
-			<p:commandButton value="Listar todas unidades" action="#{entitySearch.searchAll}"/>
-			
-			
-			
-			
-			
+			</p:tabView>	
+					
 						
-		</p:panelGrid>
+	
 	</ui:define>
 
 </ui:composition>

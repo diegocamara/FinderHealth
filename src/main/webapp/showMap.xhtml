@@ -33,8 +33,7 @@
 					<br />
 					<p:outputLabel value="Telefone de contato: #{showUnity.unity.fone}" />
 					<br />
-					<p:commandButton value="Como chegar" rendered="#{showUnity.haveLatlng}"/>
-					<p:commandButton value="Test" onclick="setDestinationPoint('#{showUnity.unityLocation.lat}','#{showUnity.unityLocation.lng}')"/>
+					<p:commandButton value="Como chegar" rendered="#{showUnity.haveLatlng}" onclick="setDestinationPoint(#{showUnity.unityLocation.lat},#{showUnity.unityLocation.lng})"/>					
 				</div>
 			</p:panel>
 			
