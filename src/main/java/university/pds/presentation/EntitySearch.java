@@ -87,6 +87,7 @@ public class EntitySearch {
 		}
 	}
 
+	
 	public String searchCategory() {
 
 		if (category != null) {
@@ -138,7 +139,7 @@ public class EntitySearch {
 			this.bairro = new String();
 
 			return "results";
-		}else{
+		} else {
 			FacesMessage message = new FacesMessage();
 
 			message.setSeverity(FacesMessage.SEVERITY_INFO);
@@ -157,42 +158,20 @@ public class EntitySearch {
 
 		return "results";
 	}
-	
-	public String searchInput(){		
-		
-				
-		// obter lista de Strings da busca.
-		/*
-		for(int i = 0; i < input.length(); ++i){
-			
-			if(input.charAt(i) == ' ' || i == input.length()-1){
-				
-				if(i == input.length()-1){
-					tempList.add(input.substring(start, i+1));
-				}else{
-					tempList.add(input.substring(start, i));					
-				}
-				
-				start = i+1;
-			}
-			
-		}
-		
-		List<List<Unity>> unitsList = new ArrayList<>();
-		*/
-				
-		
+
+	public String searchInput() {
+
 		this.unityList = unityController.searchUnityByInput(input);
-		
+
 		return "results";
 	}
-		
-	public void listIterator(List<Unity> target, List<Unity> temp){
-		
-		for(Unity unity : temp){
+
+	public void listIterator(List<Unity> target, List<Unity> temp) {
+
+		for (Unity unity : temp) {
 			target.add(unity);
 		}
-		
+
 	}
 
 	public List<Speciality> getSpecialityList() {
@@ -271,7 +250,5 @@ public class EntitySearch {
 	public void setInput(String input) {
 		this.input = input;
 	}
-	
-	
 
 }

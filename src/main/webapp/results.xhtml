@@ -20,6 +20,8 @@
 		.companyHeaderGrid tr, .companyHeaderGrid td {
    			 border: none;
 		}
+		
+		
 	</ui:define>
 		
 	<ui:define name="northContent">
@@ -28,12 +30,12 @@
 			</p:layoutUnit>
 		</ui:define>
 		
+		<!-- 
 		<ui:define name="southContent">
 			<p:layoutUnit position="south" size="200">
 			
 			</p:layoutUnit>
 		</ui:define>
-		<!-- 
 		<ui:define name="westContent">
 			<p:layoutUnit position="west" size="200">
 			
@@ -52,7 +54,7 @@
 	<ui:define name="centerContent">
 	<h:form>
 		
-		<p:dataTable value="#{entitySearch.unityList}" var="unity" type="ordered" paginator="true" rows="#{entitySearch.rowsNumber}">
+		<p:dataTable value="#{entitySearch.unityList}" var="unity" type="ordered" paginator="true" rows="#{entitySearch.rowsNumber}" style="heigth:100%;">
 			
 			<p:column headerText="Unidades">
 			

@@ -63,7 +63,9 @@ public class UserSession {
 
 		return "inicio";
 	}
-
+	
+	
+	
 	public String showInfoBar() {
 
 		String info = null;
@@ -71,7 +73,7 @@ public class UserSession {
 		if (logado) {
 			info = "Bem vindo " + user.getName() + "! ";
 		} else {
-			info = "Olá visitante.";
+			info = "";
 		}
 
 		return info;

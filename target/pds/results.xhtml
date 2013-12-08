@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	
+</h:head>
+
+<ui:composition template="WEB-INF/template/template.xhtml">
+
+
+	<ui:define name="title">Resultados</ui:define>
+	
+	<ui:define name="cssRules">
+		.companyHeaderGrid tr, .companyHeaderGrid td {
+   			 border: none;
+		}
+		
+		
+	</ui:define>
+		
+	<ui:define name="northContent">
+			<p:layoutUnit position="north" size="100">
+			
+			</p:layoutUnit>
+		</ui:define>
+		
+		<!-- 
+		<ui:define name="southContent">
+			<p:layoutUnit position="south" size="200">
+			
+			</p:layoutUnit>
+		</ui:define>
+		<ui:define name="westContent">
+			<p:layoutUnit position="west" size="200">
+			
+			</p:layoutUnit>
+		</ui:define>
+		
+		<ui:define name="eastContent">
+			<p:layoutUnit position="east" size="200">
+			
+			</p:layoutUnit>
+		</ui:define>
+		 -->
+		
+	
+	
+	<ui:define name="centerContent">
+	<h:form>
+		
+		<p:dataTable value="#{entitySearch.unityList}" var="unity" type="ordered" paginator="true" rows="#{entitySearch.rowsNumber}" style="heigth:100%;">
+			
+			<p:column headerText="Unidades">
+			
+				<p:accordionPanel multiple="true" activeIndex="-1">
+					<p:tab title="#{unity.unityName}">
+						
+							<div style="text-align:left;">
+								<p:outputLabel value="Categoria: #{unity.category.nome}"/><br/>
+								<p:outputLabel value="Endereço: #{unity.endereco}"/><br/>
+								<p:outputLabel value="Bairro: #{unity.bairro}"/><br/>
+								<p:outputLabel value="Telefone de contato: #{unity.fone}"/><br/>
+																
+								
+								<h:outputLink value="/faces/showMap.xhtml?unityId=#{unity.id}" type="button">Mostrar no mapa</h:outputLink>
+								   					
+							</div>
+					</p:tab>			
+				</p:accordionPanel>
+				
+			</p:column>
+		 
+		 
+		</p:dataTable>
+	</h:form>
+				
+	</ui:define>		
+
+</ui:composition>
+
+</html>

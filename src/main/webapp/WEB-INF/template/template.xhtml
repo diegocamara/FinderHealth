@@ -13,11 +13,26 @@
 	<title><ui:insert name="title" /></title>
 
 	<style>
-		<ui:insert name="cssRules"/>
+		<ui:insert name="cssRules"/>	
 		
-		.ui-menuitem-text{
-			font-size: 30px !important;
+		.ui-menubar{
+			background-color:#6CB5FF !important;
 		}
+		.companyHeaderGrid tr, .companyHeaderGrid td {
+   			border: none;
+		}
+		
+		.companyHeaderGrid tr, .companyHeaderGrid td {
+   			 border: none;
+		}
+		
+		.ui-tabs-nav{
+			width: 100%;
+		}		
+		.ui-layout-unit{
+			border: 0;
+		}
+				
 		
 	</style>	
 		
@@ -31,43 +46,99 @@
 
 	<p:layout fullPage="true">
 
-		<p:layoutUnit position="north" size="100">
-			<h:form id="topMenu">
-				
+		<p:layoutUnit position="north" size="90">
+		
+		
+			<h:form id="topMenu">				
 							
-					<p:menubar styleClass="ui-menubar" style="width:auto;height:auto;">																										
-						<p:menuitem value="Inicio" url="/faces/index.xhtml" />
-						<p:menuitem value="Entrar" rendered="#{!userSession.logado}" url="/faces/login.xhtml"/>
-						<p:menuitem value="Cadastro" rendered="#{!userSession.logado}" url="/faces/cadastro.xhtml"/>
+					<p:menubar style="width:auto;height:auto;" styleClass="ui-widget-header">																										
 												
-						
-						<f:facet name="options">
-							<p:outputLabel value="#{userSession.showInfoBar()}"></p:outputLabel>
-							<p:commandLink value="Sair" rendered="#{userSession.logado}" action="#{userSession.resetBean}"/>											
+						<f:facet name="options">							
+								<p:outputLabel value="#{userSession.showInfoBar()}"></p:outputLabel>
+								<p:commandLink value="Sair" rendered="#{userSession.logado}" action="#{userSession.resetBean}"/>								
+								
+								<p:commandLink value="Cadastre-se" rendered="#{!userSession.logado}" onclick="PF('modalCadastro').show();" style="padding-right:30px;"/>
+								<ui:fragment rendered="#{!userSession.logado}">																								
+									
+										<p:outputLabel value="E-mail:" />
+										<p:inputText value="#{userSession.loginForm.email}" type="email"/>
+										<p:outputLabel value="Password:"/>
+										<p:inputText value="#{userSession.loginForm.password}" type="password" />								
+								
+										<p:commandButton value="Login" action="#{userSession.login}" update=":topMenu" />									
+								</ui:fragment>
+								
+
+														
 						</f:facet>
 												
 					</p:menubar>
 				
 			</h:form>
 				
+				
+				
 				<ui:insert name="northContent" />
 			
 		</p:layoutUnit>
 				
 				
-				<ui:insert name="southContent" />
-				<ui:insert name="westContent" />		
-				<ui:insert name="eastContent" />
+				<ui:insert name="southContent" />						
+				
+				
+				<p:layoutUnit position="west" size="150" header="Menu">
+					<h:form>
+						<p:menu style="width:90%;">
+							<p:menuitem value="Inicio" url="/faces/index.xhtml" />
+							<p:separator/>
+							<p:menuitem value="Categorias" url="/faces/categorias.xhtml"/>
+							<p:separator/>
+							<p:menuitem value="Especialidades" url="/faces/especialidades.xhtml"/>
+							<p:separator/>
+							<p:menuitem value="Sobre"/>
+						</p:menu>
+							
+					</h:form>
+					
+				</p:layoutUnit>
+		
 			
+			<ui:insert name="eastContent" />
 
-		<p:layoutUnit position="center">
+		<p:layoutUnit position="center" header="Painel de busca">
 			
 				<div align="center">
-					<ui:insert name="centerContent" />				
+					<ui:insert name="centerContent" />					
 				</div>																			
 			
 		</p:layoutUnit>
 	</p:layout>
-
+	
+				<p:dialog widgetVar="modalCadastro" modal="true" resizable="false" header="Cadastro" >
+				
+					<h:form>						
+								<p:panelGrid columns="2" styleClass="companyHeaderGrid" style="text-align:left;">									
+									
+									<p:outputLabel value="Nome:"/>								
+									<p:inputText value="#{newUser.user.name}" />
+									
+									
+									<p:outputLabel value="E-mail:"/>
+									<p:inputText value="#{newUser.user.email}"/>
+									
+									<p:outputLabel value="Password:"/>
+									<p:inputText value="#{newUser.user.password}" type="password" />	
+									
+													
+									<p:commandButton value="Cadastrar" action="#{newUser.cadastrar}" />				
+									
+								</p:panelGrid>
+							<p:messages  autoUpdate="true"/>
+							<p:growl sticky="false" autoUpdate="true" life="5000"/>	
+						
+					</h:form>
+							
+				</p:dialog>				
+			
 </h:body>
 </html>
