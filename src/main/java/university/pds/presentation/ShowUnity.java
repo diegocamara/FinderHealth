@@ -51,10 +51,9 @@ public class ShowUnity {
 	
 	public String addComment(){
 		comment.setDate(new Date());		
-		comment.setUnity(unity);
-		comment.setUser(userSession.getUser());
-		
-		commentController.saveComment(comment);
+		comment.setUnity(unity);	
+		comment.setUser(userSession.getUser());		
+		commentController.saveComment(comment);		
 		return "showMap";
 		//return "/pds/faces/showMap.xhtml?unityId="+unity.getId();
 		

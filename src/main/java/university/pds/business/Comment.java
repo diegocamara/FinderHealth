@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.validator.constraints.Length;
+
 @Entity
 @Table(name="COMENTARIO")
 public class Comment {
@@ -41,7 +43,7 @@ public class Comment {
 	public void setTitle(String title) {
 		this.title = title;
 	}
-	@Column(name="DESCRICAO")
+	@Column(name="DESCRICAO", length=100000)	
 	public String getDescription() {
 		return description;
 	}

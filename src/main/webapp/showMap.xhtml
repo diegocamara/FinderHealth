@@ -51,28 +51,43 @@
 			<h:form>
 			
 				<p:accordionPanel activeIndex="-1">
-					<p:tab title="Mostrar comentarios!">
-					<p:panelGrid columns="1" style="width:100%;" rendered="#{userSession.logado}">
-						<p:inputText value="#{showUnity.comment.title}" placeholder="Titulo do comentário" style="width:100%;" />					
-						<p:inputTextarea value="#{showUnity.comment.description}" placeholder="Descrição" autoResize="false"  style="width:100%;" />
-						
-						<p:outputLabel value="Avalie sua experiência nesta unidade de saúde:"/>
-						<p:rating style="height:100px;" value="#{showUnity.comment.starsNumber}"/>
-						<p:commandButton value="Comentar" action="#{showUnity.addComment}" style="width:100%;height:100px;" />
-						
-					</p:panelGrid>
-						
-						<p:dataList value="#{showUnity.comments}" var="comment">
-							#{comment.user.name}						
-							#{comment.description}
-							#{comment.starsNumber}
-						</p:dataList>
-						
-					</p:tab>	
-					
-					
+					<p:tab title="Comentar">
+						<p:outputLabel value="É necessário estar logado para comentar." rendered="#{!userSession.logado}"/>
+						<p:panelGrid columns="1" style="width:100%;" rendered="#{userSession.logado}">
+							<p:inputText value="#{showUnity.comment.title}" placeholder="Titulo do comentário" style="width:100%;" />					
+							<p:inputTextarea value="#{showUnity.comment.description}" placeholder="Descrição" autoResize="false"  style="width:100%;" />
 							
+							<p:outputLabel value="Avalie sua experiência nesta unidade de saúde:"/>
+							<p:rating value="#{showUnity.comment.starsNumber}"/>
+							<p:commandButton value="Comentar" action="#{showUnity.addComment}" style="width:100%;height:100px;" />
+							
+							
+						</p:panelGrid>					
+					</p:tab>						
 				</p:accordionPanel>
+				
+										
+		<p:dataTable value="#{showUnity.comments}" var="comment" type="ordered" paginator="true" rows="5" style="heigth:100%;">
+			
+			<p:column headerText="Comentários">			
+				
+					<p:tab title="#{comment.title}">
+						
+							<div style="text-align:left;">
+								<p:outputLabel value="Postado por: #{comment.user.name}"/><br/>
+								<p:outputLabel value="Em: #{comment.date}"/><br/><br/>	
+								<h:outputText value="#{comment.description}"/><br/>
+								<p:outputLabel value="Avaliação:  "/><br />
+								<p:rating value="#{comment.starsNumber}" readonly="true"/><br />
+							</div>
+					</p:tab>			
+			
+				
+			</p:column>
+		 
+		 
+		</p:dataTable>
+				
 				<!--  -->
 				<p:dialog widgetVar="dialog" header="Adicione um comentário sobre a unidade.">
 						<p:inputTextarea></p:inputTextarea>
