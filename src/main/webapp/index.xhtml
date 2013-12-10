@@ -23,6 +23,8 @@
 		
 	<ui:define name="centerContent">
 	
+	<p:panel header="Painel de busca">
+	
 								
 			<h1>O que você busca?</h1>			
 			
@@ -30,21 +32,19 @@
 			
 			
 			
-			<h:panelGrid columns="2" style="width:100%;margin: 0 auto;vertical-align:middle;">
+			<h:panelGrid columns="1" style="width:90%;">
 				
-				<p:fieldset legend="Categoria" style="width:35%;margin: 0 auto;display:block;">
+				<p:fieldset id="fieldSetCategory" legend="Categoria" style="width:100%;">
 				
 					<h:form>
 						<h:panelGrid columns="1" style="width:100%;margin: 0 auto;text-align:center;">
 						
-							<p:selectOneMenu value="#{entitySearch.categoryId}" onchange="#{entitySearch.categoryConfig()}" style="width:350px;margin: 0 auto;">
+							<p:selectOneMenu value="#{entitySearch.categoryId}" onchange="#{entitySearch.categoryConfig()}" style="width:700px;">
 								<f:selectItem itemLabel="Selecione uma categoria." itemValue="0"/>
 								<f:selectItems value="#{entitySearch.categoryList}" var="category" itemLabel="#{category.nome}" itemValue="#{category.id}"/>
 								<p:ajax update="@form" />
-							</p:selectOneMenu>			
-							
-							<h:graphicImage id="imgCategoria" url="/images/hospital_icon.png" style="width:50%;"/>
-							<p:tooltip for="imgCategoria" value="Aqui você pode encontrar unidades em Recife por categorias." showEffect="slide" hideEffect="explode" />														
+							</p:selectOneMenu>										
+																											
 							<p:commandButton value="Buscar" action="#{entitySearch.searchCategory}" style="margin: 0 auto;"/>
 													
 						</h:panelGrid>						
@@ -52,22 +52,22 @@
 						<p:growl sticky="false" autoUpdate="true" life="5000"/>	
 					  
 					</h:form>
+					<p:tooltip for="fieldSetCategory" value="Aqui você pode encontrar unidades em Recife por categorias." showEffect="slide" hideEffect="explode" />
 			
 				</p:fieldset>
 				
-				<p:fieldset legend="Especialidade" style="width:35%;margin: 0 auto;display:block;">
+				<p:fieldset legend="Especialidade" style="width:100%;">
 				
 					<h:form>
 						
 						<h:panelGrid columns="1" style="width:100%;margin: 0 auto;text-align:center;">
 						
-							<p:selectOneMenu value="#{entitySearch.specialityId}" onchange="#{entitySearch.specialityConfig()}" style="width:350px;margin: 0 auto;">
+							<p:selectOneMenu value="#{entitySearch.specialityId}" onchange="#{entitySearch.specialityConfig()}" style="width:700px;margin: 0 auto;">
 								<f:selectItem itemLabel="Selecione uma especialidade." itemValue="0"/>
 								<f:selectItems value="#{entitySearch.specialityList}" var="speciality" itemLabel="#{speciality.name}" itemValue="#{speciality.id}"/>
 								<p:ajax update="@form"/>
 							</p:selectOneMenu>
-							<h:graphicImage id="imgEspecialidade" url="/images/icon.png" style="width:50%;"/>
-							<p:tooltip for="imgEspecialidade" value="Aqui você pode encontrar unidades em Recife por especialidades." showEffect="slide" hideEffect="explode" />
+																					
 							<p:commandButton value="Buscar" action="#{entitySearch.searchSpeciality}"/>
 			
 						</h:panelGrid>
@@ -75,25 +75,25 @@
 			
 				</p:fieldset>			
 			
+			<p:fieldset legend="Palavra chave" style="width:100%;">
+					<h:form>
+							<h:panelGrid columns="1" style="width:100%;margin: 0 auto;text-align:center;">	
+							<h1 align="center">Palavra chave</h1>
+							<p:inputText value="#{entitySearch.input}" style="width:30%;margin: 0 auto;" />						
+							
+								<h:panelGrid columns="2" style="width:40%;margin: 0 auto;text-align:center;">
+									<p:commandButton value="Buscar" action="#{entitySearch.searchInput}"/>
+									<p:commandButton value="Listar todas" action="#{entitySearch.searchAll}" style="display: inline-block;"/>
+								</h:panelGrid>
+																								
+							</h:panelGrid>	
+								
+					</h:form>
+			</p:fieldset>	
+				
 			</h:panelGrid>
 			
-				<h:form>
-					<h:panelGrid columns="1" style="width:50%;margin: 0 auto;">
-						<h1 align="center">Busca geral</h1>
-						<p:inputText value="#{entitySearch.input}" style="width:100%;margin: 0 auto;" />						
-						
-							<h:panelGrid columns="2" style="width:50%;margin: 0 auto;text-align:center;">
-								<p:commandButton value="Buscar" action="#{entitySearch.searchInput}"/>
-								<p:commandButton value="Listar todas" action="#{entitySearch.searchAll}" style="display: inline-block;"/>
-							</h:panelGrid>
-							
-							<p:tooltip for="imgBusca" value="Digite uma palavra chave." showEffect="slide" hideEffect="explode" style="margin-bottom:30px;"/>
-							<h:graphicImage id="imgBusca" url="/images/img0.png" style="width:10%;"/>
-							
-								
-						</h:panelGrid>			
-				</h:form>
-						
+		</p:panel>				
 				
 	</ui:define>
 

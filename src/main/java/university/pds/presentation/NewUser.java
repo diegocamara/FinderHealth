@@ -16,51 +16,64 @@ import university.pds.business.UserController;
 @Scope(WebApplicationContext.SCOPE_REQUEST)
 public class NewUser {
 
-	private @Autowired UserController userController;	
+	private @Autowired
+	UserController userController;
 	private User user;
-	
+	private String mailConfirm;
 
 	@PostConstruct
-	public void initialize(){
-		this.user = new User();		
+	public void initialize() {
+		this.user = new User();
 	}
-	
+
 	public User getUser() {
 		return user;
 	}
-	
-	
+
 	public void setUser(User user) {
 		this.user = user;
-	}	
+	}
+
 	
-		
+	public String getMailConfirm() {
+		return mailConfirm;
+	}
 
-	public void cadastrar(){
-		FacesMessage message = new FacesMessage();		
-		
-		User userDataBase = userController.searchUser(user);
-		
-		
-		if(userDataBase == null){
-			
-			user.setName(user.getName().toLowerCase());
-			user.setEmail(user.getEmail().toLowerCase());
-			
-			try {
-				userController.saveUser(user);
-				message.setSeverity(FacesMessage.SEVERITY_INFO);
-				message.setSummary("Usuário cadastrado com sucesso!");				
-			} catch (RuntimeException e) {
+	public void setMailConfirm(String mailConfirm) {
+		this.mailConfirm = mailConfirm;
+	}
 
+	public void cadastrar() {
+
+		FacesMessage message = new FacesMessage();
+		
+		if (user.getEmail().trim().equals(mailConfirm.trim())) {
+
+			User userDataBase = userController.searchUser(user);
+
+			if (userDataBase == null) {
+
+				user.setName(user.getName().toLowerCase());
+				user.setEmail(user.getEmail().toLowerCase());
+
+				try {
+					userController.saveUser(user);
+					message.setSeverity(FacesMessage.SEVERITY_INFO);
+					message.setSummary("Usuário cadastrado com sucesso!");
+				} catch (RuntimeException e) {
+
+				}
+
+			} else {
+				message.setSeverity(FacesMessage.SEVERITY_WARN);
+				message.setSummary("E-mail já existe!");
 			}
-			
+
 		}else{
 			message.setSeverity(FacesMessage.SEVERITY_WARN);
-			message.setSummary("E-mail já existe!");
+			message.setSummary("O e-mail não pode ser confirmado!");
 		}
-		
-		FacesContext.getCurrentInstance().addMessage(null, message);				
+		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
-	
+
 }

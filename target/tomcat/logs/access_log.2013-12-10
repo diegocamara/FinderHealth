@@ -1,0 +1,13 @@
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:00:36 -0300] "GET /finderhealth/faces/index.xhtml HTTP/1.1" 200 31379 http-bio-8080-exec-2 2910
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:00:44 -0300] "POST /finderhealth/faces/index.xhtml HTTP/1.1" 200 896 http-bio-8080-exec-4 160
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:00:56 -0300] "POST /finderhealth/faces/index.xhtml HTTP/1.1" 200 1258 http-bio-8080-exec-5 117
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:01:03 -0300] "POST /finderhealth/faces/index.xhtml HTTP/1.1" 200 896 http-bio-8080-exec-6 47
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:01:05 -0300] "GET /finderhealth/faces/index.xhtml HTTP/1.1" 200 31397 http-bio-8080-exec-7 42
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:01:07 -0300] "POST /finderhealth/faces/index.xhtml HTTP/1.1" 200 896 http-bio-8080-exec-9 43
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:01:29 -0300] "POST /finderhealth/faces/index.xhtml HTTP/1.1" 200 109 http-bio-8080-exec-10 11469
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:01:29 -0300] "GET /finderhealth/faces/results.xhtml HTTP/1.1" 200 31088 http-bio-8080-exec-10 186
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:01:32 -0300] "GET /finderhealth/faces/javax.faces.resource/images/ui-icons_f9bd01_256x240.png?ln=primefaces-redmond HTTP/1.1" 200 4369 http-bio-8080-exec-10 199
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:01:35 -0300] "GET /finderhealth/faces/showMap.xhtml?unityId=1 HTTP/1.1" 200 22554 http-bio-8080-exec-10 2129
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:01:35 -0300] "GET /finderhealth/faces/javax.faces.resource/gmap/gmap.js?ln=primefaces&v=4.0 HTTP/1.1" 200 4718 http-bio-8080-exec-1 7
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:01:35 -0300] "GET /finderhealth/faces/javax.faces.resource/rating/rating.png?ln=primefaces&v=4.0 HTTP/1.1" 200 3964 http-bio-8080-exec-1 8
+0:0:0:0:0:0:0:1 - - [10/Dec/2013:17:01:36 -0300] "GET /finderhealth/faces/javax.faces.resource/images/ui-icons_469bdd_256x240.png?ln=primefaces-redmond HTTP/1.1" 200 4369 http-bio-8080-exec-1 21

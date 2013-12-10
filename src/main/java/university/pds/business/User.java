@@ -29,7 +29,7 @@ public class User {
 	}
 	
 	@Column(name="NOME")	
-	@Size(min=5, max=100)	
+	@Size(min=5, max=100, message="O nome do usuário deve ter menos 5 caracters!")	
 	public String getName() {
 		return name;
 	}

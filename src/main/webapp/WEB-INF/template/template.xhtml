@@ -105,7 +105,7 @@
 			
 			<ui:insert name="eastContent" />
 
-		<p:layoutUnit position="center" header="Painel de busca">
+		<p:layoutUnit position="center">
 			
 				<div align="center">
 					<ui:insert name="centerContent" />					
@@ -126,8 +126,12 @@
 									<p:outputLabel value="E-mail:"/>
 									<p:inputText value="#{newUser.user.email}"/>
 									
+									<p:outputLabel value="Confirme o e-mail:"/>
+									<p:inputText value="#{newUser.mailConfirm}" type="email" />
+									
 									<p:outputLabel value="Password:"/>
 									<p:inputText value="#{newUser.user.password}" type="password" />	
+									
 									
 													
 									<p:commandButton value="Cadastrar" action="#{newUser.cadastrar}" />				
