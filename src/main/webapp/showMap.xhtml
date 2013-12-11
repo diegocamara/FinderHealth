@@ -33,7 +33,7 @@
 					<br />
 					<p:outputLabel value="Telefone de contato: #{showUnity.unity.fone}" />
 					<br />					
-					<h:graphicImage url="/images/car.png" style="width:100px;height:100px;"/>&#160;				
+					<h:graphicImage url="/images/car.png" style="width:100px;height:100px;" rendered="#{showUnity.haveLatlng}"/>&#160;				
 					<p:commandButton value="Como chegar" rendered="#{showUnity.haveLatlng}" onclick="setDestinationPoint(#{showUnity.unityLocation.lat},#{showUnity.unityLocation.lng})"/>
 				</div>
 			</p:panel>

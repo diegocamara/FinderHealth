@@ -44,6 +44,8 @@ public class EntitySearch {
 	private Integer specialityId;
 	private String bairro;
 	private String input = "";
+	
+	
 
 	@PostConstruct
 	private void initialize() {
@@ -52,7 +54,8 @@ public class EntitySearch {
 
 		this.categoryList = categoryController.selectCategory();
 
-		this.specialityList = specialityController.selectSpeciality();
+		this.specialityList = specialityController.selectSpeciality();	
+				
 	}
 
 	public List<Category> getCategoryList() {
@@ -251,4 +254,5 @@ public class EntitySearch {
 		this.input = input;
 	}
 
+	
 }
