@@ -18,6 +18,10 @@
 		.ui-tabs-nav{
 			width: 100%;
 		}
+		
+		.panelGridCenter {
+    		margin: 0 auto;
+		}
 	</ui:define>
 	
 		
@@ -43,16 +47,25 @@
 								<f:selectItem itemLabel="Selecione uma categoria." itemValue="0"/>
 								<f:selectItems value="#{entitySearch.categoryList}" var="category" itemLabel="#{category.nome}" itemValue="#{category.id}"/>
 								<p:ajax update="@form" />
-							</p:selectOneMenu>										
-																											
-							<p:commandButton value="Buscar" action="#{entitySearch.searchCategory}" style="margin: 0 auto;"/>
+							</p:selectOneMenu>	
 													
-						</h:panelGrid>						
+						</h:panelGrid>	
+						
+							<h:panelGrid columns="2" styleClass="panelGridCenter">
+							
+								<h:graphicImage id="hitCategory" url="/images/hitImage.png" style="width:35px;height:35px;"/>
+								<p:commandButton value="Buscar" action="#{entitySearch.searchCategory}" style="margin: 0 auto;"/>
+								
+							</h:panelGrid>					
 					  	
 						<p:growl sticky="false" autoUpdate="true" life="5000"/>	
 					  
+						<p:tooltip for="hitCategory" showEffect="slide" hideEffect="fold" >
+							<p:graphicImage value="/images/hit1.png"/>
+						</p:tooltip>
 					</h:form>
-					<p:tooltip for="fieldSetCategory" value="Aqui você pode encontrar unidades em Recife por categorias." showEffect="slide" hideEffect="explode" />
+					
+					
 			
 				</p:fieldset>
 				
@@ -67,8 +80,17 @@
 								<f:selectItems value="#{entitySearch.specialityList}" var="speciality" itemLabel="#{speciality.name}" itemValue="#{speciality.id}"/>
 								<p:ajax update="@form"/>
 							</p:selectOneMenu>
+							
+							<h:panelGrid columns="2" styleClass="panelGridCenter">
+							
+								<h:graphicImage id="hitSpeciality" url="/images/hitImage.png" style="width:35px;height:35px;"/>
+								<p:commandButton value="Buscar" action="#{entitySearch.searchSpeciality}"/>
+								
+							</h:panelGrid>			
 																					
-							<p:commandButton value="Buscar" action="#{entitySearch.searchSpeciality}"/>
+							<p:tooltip for="hitSpeciality" showEffect="slide" hideEffect="fold" >
+								<p:graphicImage value="/images/hit2.png"/>
+							</p:tooltip>
 			
 						</h:panelGrid>
 				</h:form>
@@ -81,12 +103,17 @@
 							<h1 align="center">Palavra chave</h1>
 							<p:inputText value="#{entitySearch.input}" style="width:30%;margin: 0 auto;" />						
 							
-								<h:panelGrid columns="2" style="width:40%;margin: 0 auto;text-align:center;">
+								<h:panelGrid columns="3" style="width:40%;margin: 0 auto;text-align:center;">
+									<h:graphicImage id="hitKeyWord" url="/images/hitImage.png" style="width:35px;height:35px;"/>
 									<p:commandButton value="Buscar" action="#{entitySearch.searchInput}"/>
 									<p:commandButton value="Listar todas" action="#{entitySearch.searchAll}" style="display: inline-block;"/>
 								</h:panelGrid>
 																								
 							</h:panelGrid>	
+							
+							<p:tooltip for="hitKeyWord" showEffect="slide" hideEffect="fold" >
+								<p:graphicImage value="/images/hit3.png"/>
+							</p:tooltip>
 								
 					</h:form>
 			</p:fieldset>	

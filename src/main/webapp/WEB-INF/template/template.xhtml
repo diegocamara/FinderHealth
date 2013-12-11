@@ -60,10 +60,10 @@
 								<p:commandLink value="Cadastre-se" rendered="#{!userSession.logado}" onclick="PF('modalCadastro').show();" style="padding-right:30px;"/>
 								<ui:fragment rendered="#{!userSession.logado}">																								
 									
-										<p:outputLabel value="E-mail:" />
-										<p:inputText value="#{userSession.loginForm.email}" type="email"/>
-										<p:outputLabel value="Password:"/>
-										<p:inputText value="#{userSession.loginForm.password}" type="password" />								
+										<p:outputLabel value="E-mail:&#160;" />
+										<p:inputText value="#{userSession.loginForm.email}" type="email"/>&#160;
+										<p:outputLabel value="Password:&#160;"/>
+										<p:inputText value="#{userSession.loginForm.password}" type="password" />&#160;								
 								
 										<p:commandButton value="Login" action="#{userSession.login}" update=":topMenu" />									
 								</ui:fragment>
