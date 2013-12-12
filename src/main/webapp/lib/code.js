@@ -254,7 +254,7 @@
 			
 				});	
 				
-			
+				
 				
 				if(window.lat == undefined && window.lng == undefined){
 					localEnabled = false;
@@ -294,9 +294,8 @@
 						
 			function enableInterface(){
 			
-				document.getElementById("findBtn").disabled = false;
-				document.getElementById("destinationAddress").disabled = false;
-				document.getElementById("addDestinoBtn").disabled = false;				
+				document.getElementById("routeButton").disabled = false;
+							
 			
 			}// fim da função enableInterface.
 		
