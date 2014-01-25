@@ -20,7 +20,7 @@
 		
 									
 			// executa getPosition em um intervalo de dois segundos.
-			var ref = window.setInterval(function(){getPosition()}, 500);
+			var ref = window.setInterval(function(){getPosition()}, 3000);
 								
 								
 			
